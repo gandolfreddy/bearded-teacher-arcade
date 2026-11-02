@@ -75,3 +75,7 @@ schemaVersion、id、title、description、entry、inputs、instructions 為必�
 ## 六、v0.2.0 接續
 
 games.json 正式列出 snake 與 memory；兩款均為 kind=game 並實作必要通訊。GameHost 共用生命週期，獨立核心規則位於 games/assets/models.mjs。舊操作示範清單放在 tests/fixtures/catalog.json，僅回歸測試攔截使用；正式大廳不列出。直接開啟的遊戲可用自己的開始／暫停／重新開始，不需外框。沒有音訊或持久成績儲存。
+
+## 七、v0.2.1 載入契約補充
+
+外框在收到目前遊戲 ready 前隱藏 iframe。遊戲 HTML 的開始鈕初始 disabled，由初始化程式完成事件綁定後啟用；就緒訊息不只變更標籤，也控制實際可操作時機。獨立模式同樣適用。

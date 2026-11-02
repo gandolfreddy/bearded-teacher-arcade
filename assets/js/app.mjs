@@ -7,10 +7,13 @@ const session = new GameSession({
     const iframe = document.createElement('iframe');
     iframe.title = game.title;
     iframe.id = 'game-frame';
+    iframe.hidden = true;
     return {window: () => iframe.contentWindow, remove: () => iframe.remove(), mount() { iframe.src = game.entry; $('stage').replaceChildren(iframe); }};
   },
   onState(state, game, message) {
     $('stage').setAttribute('aria-busy', String(state === 'loading'));
+    const gameFrame = $('game-frame');
+    if(gameFrame) gameFrame.hidden = state !== 'ready';
     $('play-error').hidden = state !== 'error';
     $('restart').disabled = state !== 'ready';
     $('stage-status').textContent = state === 'loading' ? '正在準備遊戲…' : state === 'ready' ? '準備好了。請在下方開始。' : '載入未完成。';

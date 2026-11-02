@@ -31,6 +31,9 @@ export class GameHost {
     },50);
     window.addEventListener('pagehide',()=>this.dispose(),{once:true});
     window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
+    this.start.disabled=false;
+    this.status.textContent='準備好了，按「開始遊戲」。';
+    document.body.dataset.phase='ready';
     this.send('ready');
   }
   send(type,extra={}) {if(parent!==window)parent.postMessage({channel:'bta',version:1,gameId:this.id,type,...extra},location.origin);}

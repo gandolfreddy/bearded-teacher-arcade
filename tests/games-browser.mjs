@@ -121,6 +121,32 @@ try{
       await page.getByRole('button',{name:/開始遊戲|繼續遊戲/}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
     }
   });
+  await run('模組慢載入時嵌入操作區不顯示，ready 後才能開始',async page=>{
+    let release;const gate=new Promise(resolve=>{release=resolve;});
+    await page.route('**/games/assets/memory.mjs',async route=>{await gate;await route.continue();});
+    const requested=page.waitForRequest('**/games/assets/memory.mjs');
+    try{
+      await page.goto(base+'#game=memory',{waitUntil:'domcontentloaded'});await requested;
+      await expect(page.locator('#stage')).toHaveAttribute('aria-busy','true');
+      await expect(page.locator('#game-frame')).toBeHidden();
+      await expect(page.frameLocator('#game-frame').locator('#start')).toBeDisabled();
+      release();await expect(page.locator('#stage-status')).toContainText('準備好了');
+      await expect(page.locator('#game-frame')).toBeVisible();
+      await page.frameLocator('#game-frame').getByRole('button',{name:'開始遊戲'}).click();
+      await expect(page.frameLocator('#game-frame').locator('#status')).toHaveText('遊戲中');
+    }finally{release();}
+  });
+  await run('獨立遊戲模組慢載入時開始鈕停用',async page=>{
+    let release;const gate=new Promise(resolve=>{release=resolve;});
+    await page.route('**/games/assets/snake.mjs',async route=>{await gate;await route.continue();});
+    const requested=page.waitForRequest('**/games/assets/snake.mjs');
+    try{
+      await page.goto(base+'games/snake.html',{waitUntil:'commit'});await requested;
+      await expect(page.locator('#start')).toBeDisabled();await expect(page.locator('#status')).toHaveText('正在準備遊戲…');
+      release();await expect(page.locator('#status')).toContainText('準備好了');
+      await page.getByRole('button',{name:'開始遊戲'}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
+    }finally{release();}
+  });
   results.push({name:'正式遊戲無未處理 JavaScript 例外',status:errors.length?'failed':'passed'});
 }finally{
   await writeFile(new URL('games-browser-report.json',evidence),JSON.stringify({date:new Date().toISOString(),browser:browser.version(),base,results,errors,limitation:'獨立瀏覽器與觸控模擬，非平板實機驗收。'},null,2)+'\n');

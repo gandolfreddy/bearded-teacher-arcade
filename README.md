@@ -1,6 +1,6 @@
 # 大鬍子老師遊戲廣場
 
-Bearded Teacher Arcade · v0.2.0 · 2026-11-03
+Bearded Teacher Arcade · v0.2.1 · 2026-11-03
 
 **網址：https://gandolfreddy.github.io/bearded-teacher-arcade/**
 
@@ -38,7 +38,7 @@ npm run build
 
 瀏覽器測試會自動啟停本輪預覽，須先停止佔用 5193 的本專案服務；不自行結束其他程式。預設使用已安裝 Google Chrome 的獨立 Playwright session，不沿用你的日常分頁或登入資料。@playwright/test 版本由 package-lock.json 鎖定；CI 安裝單一 Chromium headless shell。
 
-check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.2.0/。
+check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.2.1/。
 
 build 只複製網站到 dist/，包含 site-version.json 供發布版本核對，不包含開發文件、測試、依賴或 Git 資料。
 
@@ -70,12 +70,13 @@ docs/                       # 規劃、整合契約、歷史與證據
 
 ## 文件與畫面
 
-- [本版成果與驗收界線](docs/RELEASE-v0.2.0.md)
+- [本版修正與驗收界線](docs/RELEASE-v0.2.1.md)
+- [兩款遊戲與 CI/CD 成果](docs/RELEASE-v0.2.0.md)
 - [目前進度](docs/STATUS.md)
 - [需求與任務](docs/PLAN.md)
 - [遊戲整合契約](docs/GAME_SPEC.md)
-- [正式大廳截圖](docs/evidence/v0.2.0/games-lobby-desktop.png)
-- [平板尺寸配對頁](docs/evidence/v0.2.0/memory-tablet.png)
+- [正式大廳截圖](docs/evidence/v0.2.1/games-lobby-desktop.png)
+- [平板尺寸配對頁](docs/evidence/v0.2.1/memory-tablet.png)
 
 平板實機與 Safari 等其他引擎尚未驗收；尺寸／觸控模擬不等同實機。沒有資料庫或玩家永久資料。
 
