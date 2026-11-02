@@ -1,0 +1,169 @@
+{
+  "conclusion": "success",
+  "createdAt": "2026-11-02T20:09:25Z",
+  "headSha": "7cbc3ec9df1c339410c0e5febf768518501a670f",
+  "jobs": [
+    {
+      "completedAt": "2026-11-02T20:10:33Z",
+      "conclusion": "success",
+      "databaseId": 125521611972,
+      "name": "test",
+      "startedAt": "2026-11-02T20:09:28Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:09:29Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:09:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:30Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "number": 2,
+          "startedAt": "2026-11-02T20:09:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:31Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "number": 3,
+          "startedAt": "2026-11-02T20:09:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:32Z",
+          "conclusion": "success",
+          "name": "Run npm ci --no-audit --no-fund",
+          "number": 4,
+          "startedAt": "2026-11-02T20:09:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:33Z",
+          "conclusion": "success",
+          "name": "Run npm run check",
+          "number": 5,
+          "startedAt": "2026-11-02T20:09:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:34Z",
+          "conclusion": "success",
+          "name": "Run npm test",
+          "number": 6,
+          "startedAt": "2026-11-02T20:09:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:09:49Z",
+          "conclusion": "success",
+          "name": "Install one headless browser (no browser cache)",
+          "number": 7,
+          "startedAt": "2026-11-02T20:09:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:28Z",
+          "conclusion": "success",
+          "name": "Browser tests in an isolated session",
+          "number": 8,
+          "startedAt": "2026-11-02T20:09:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:28Z",
+          "conclusion": "success",
+          "name": "Run npm run build",
+          "number": 9,
+          "startedAt": "2026-11-02T20:10:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:29Z",
+          "conclusion": "success",
+          "name": "Upload only deployable website",
+          "number": 10,
+          "startedAt": "2026-11-02T20:10:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:29Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "number": 19,
+          "startedAt": "2026-11-02T20:10:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:30Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "number": 20,
+          "startedAt": "2026-11-02T20:10:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:30Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 21,
+          "startedAt": "2026-11-02T20:10:30Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/gandolfreddy/bearded-teacher-arcade/actions/runs/41516591674/job/125521611972"
+    },
+    {
+      "completedAt": "2026-11-02T20:10:51Z",
+      "conclusion": "success",
+      "databaseId": 125522223532,
+      "name": "deploy",
+      "startedAt": "2026-11-02T20:10:36Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:10:43Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:10:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:43Z",
+          "conclusion": "success",
+          "name": "Configure Pages",
+          "number": 2,
+          "startedAt": "2026-11-02T20:10:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:50Z",
+          "conclusion": "success",
+          "name": "Deploy tested artifact",
+          "number": 3,
+          "startedAt": "2026-11-02T20:10:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:10:50Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 4,
+          "startedAt": "2026-11-02T20:10:50Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/gandolfreddy/bearded-teacher-arcade/actions/runs/41516591674/job/125522223532"
+    }
+  ],
+  "status": "completed",
+  "updatedAt": "2026-11-02T20:10:55Z",
+  "url": "https://github.com/gandolfreddy/bearded-teacher-arcade/actions/runs/41516591674",
+  "workflowName": "Test and deploy Pages"
+}

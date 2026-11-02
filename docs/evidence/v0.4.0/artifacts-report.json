@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 13176210293,
+      "node_id": "MDg6QXJ0aWZhY3QxMzE3NjIxMDI5Mw==",
+      "name": "github-pages",
+      "size_in_bytes": 35080,
+      "url": "https://api.github.com/repos/gandolfreddy/bearded-teacher-arcade/actions/artifacts/13176210293",
+      "archive_download_url": "https://api.github.com/repos/gandolfreddy/bearded-teacher-arcade/actions/artifacts/13176210293/zip",
+      "expired": false,
+      "digest": "sha256:c31d8290961eb6fadaa34f28c0034f615fd7573d6a3cbebb85e75f5f7f01888f",
+      "created_at": "2026-11-02T20:10:29Z",
+      "updated_at": "2026-11-02T20:10:29Z",
+      "expires_at": "2026-11-03T20:10:29Z",
+      "workflow_run": {
+        "id": 41516591674,
+        "repository_id": 1443329574,
+        "head_repository_id": 1443329574,
+        "head_branch": "main",
+        "head_sha": "7cbc3ec9df1c339410c0e5febf768518501a670f"
+      }
+    }
+  ]
+}
