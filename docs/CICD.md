@@ -33,3 +33,7 @@ build 產生 site-version.json，含版本與提交 SHA，供上線後比對。�
 - https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 - https://docs.github.com/en/rest/pages/pages#create-a-github-pages-site
 - actions/checkout v6、setup-node v6、configure-pages v5、upload-pages-artifact v4、deploy-pages v4 的官方 tags。
+
+## 最終驗收接續
+
+v0.2.1 遠端 run 41503730869 的 test／deploy 與整輪均 success；正式站 site-version.json 與發布提交 869e655 一致，獨立 Playwright smoke 通過。本輪部署產物 19,098 bytes、保留 1 天。詳見 RELEASE-v0.2.1.md 與其 evidence。只更新 docs／README 的最後證據提交不另觸發 CI。

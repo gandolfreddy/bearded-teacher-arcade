@@ -4,7 +4,7 @@
 
 T01／T02 外框、T03 星星貪食蛇、T04 翻牌配對已實作。本機 18 項核心、17 項外框與 14 項正式遊戲瀏覽器測試通過，語法／清單及 build 通過。T05：本機整合與觸控模擬已驗，平板實機待驗。
 
-T06：GitHub Pages CI/CD 已啟用，v0.1.1 的遠端測試及部署成功，site-version.json 已讀回核對；v0.2.0 遠端測試／部署成功，但實際互動驗收發現慢載入開始鈕問題，v0.2.1 已修正並補延遲載入測試，遠端發布待續記。詳見 [本版紀錄](RELEASE-v0.2.1.md)、[CI/CD](CICD.md)。
+T06：GitHub Pages CI/CD 已啟用，v0.1.1 的遠端測試及部署成功，site-version.json 已讀回核對；v0.2.0 遠端測試／部署成功，但實際互動驗收發現慢載入開始鈕問題，v0.2.1 已修正並補延遲載入測試，遠端 test／deploy 均 success（run 41503730869），正式網站版本 0.2.1／869e655 已核對，兩款遊戲的開始、暫停／翻牌與返回限定操作驗收通過。詳見 [本版紀錄](RELEASE-v0.2.1.md)、[CI/CD](CICD.md)。
 
 [程式與啟動方式](../README.md)、[最新本機證據](evidence/v0.2.1/source-sha256.json)、[遊戲測試報告](evidence/v0.2.1/games-browser-report.json)。v0.1.0 歷史驗證仍留在 VALIDATION.md，不當作目前版本驗收。
 

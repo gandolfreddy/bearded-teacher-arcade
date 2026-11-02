@@ -4,7 +4,7 @@ Bearded Teacher Arcade · v0.2.1 · 2026-11-03
 
 **網址：https://gandolfreddy.github.io/bearded-teacher-arcade/**
 
-目前兩款遊戲：星星貪食蛇、翻牌配對。都能以電腦鍵盤或平板觸控操作，提供暫停、重玩及返回大廳。程式已完成本機驗證；實際已部署版本請以網站 site-version.json 與 [進度](docs/STATUS.md) 為準，最新開發提交不一定已發布。
+目前兩款遊戲：星星貪食蛇、翻牌配對。都能以電腦鍵盤或平板觸控操作，提供暫停、重玩及返回大廳。v0.2.1 已完成本機測試、遠端 CI／部署與正式網站限定操作驗收。網站 site-version.json 對應發布程式提交 869e655；平板實機等未驗範圍見 [進度](docs/STATUS.md)。
 
 ## 怎麼玩
 
