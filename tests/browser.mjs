@@ -4,7 +4,7 @@ import {mkdir, writeFile} from 'node:fs/promises';
 const base = process.env.BTA_URL || 'http://127.0.0.1:5193/bearded-teacher-arcade/';
 const evidence = new URL('../test-results/',import.meta.url);
 await mkdir(evidence,{recursive:true});
-const browser = await chromium.launch({channel:'chrome',headless:true});
+const browser = await chromium.launch({...(process.env.BTA_BROWSER === 'chromium' ? {} : {channel:'chrome'}),headless:true});
 const results = [], errors = [];
 async function run(name, fn) {
   try {await fn(); results.push({name,status:'passed'}); console.log('PASS ' + name);}

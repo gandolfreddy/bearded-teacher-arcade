@@ -69,3 +69,7 @@ docs/                         # 規劃、契約與驗證證據
 本版未建立遠端或部署。預計發布根目錄靜態檔，保留 .nojekyll；網站使用相對路徑與 hash 路由，已在本機 /bearded-teacher-arcade/ 子路徑測試。這不代表正式 Pages 環境已驗收。發布前另確認擁有者、儲存庫、可見性與發布授權。
 
 若需檢視已驗版本，先用 `git log --oneline` 找到 v0.1.0 的網站骨架提交，再於另一個目錄使用 `git worktree add --detach <新目錄> <提交識別碼>` 建立副本；不強制重設現有工作目錄。副本如需重跑瀏覽器測試，依鎖定檔執行 npm ci。這一版無玩家持久資料；未實測 worktree 復原程序，不以提交存在宣稱已完成復原演練。
+
+## CI/CD（v0.1.1 接續）
+
+已加入 [免費範圍內的 CI/CD](docs/CICD.md)：main 原始碼 push 與 PR 自動測試，只有 main 通過後部署 GitHub Pages。支援 `npm run check`、`npm run test:browser:ci` 自動啟停預覽與 `npm run build` 最小發布包。正式遠端結果見 docs/STATUS.md，不以本機測試取代遠端驗收。
