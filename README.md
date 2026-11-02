@@ -4,7 +4,7 @@ Bearded Teacher Arcade · v0.3.0 · 2026-11-03
 
 **網址：https://gandolfreddy.github.io/bearded-teacher-arcade/**
 
-目前四款遊戲：星星貪食蛇、翻牌配對、俄羅斯方塊、鬍子老師的星星小徑。皆支援鍵盤與觸控、暫停／重玩／返回。v0.3.0 本機驗收通過；最新正式發布版本及未驗範圍見 [進度](docs/STATUS.md) 與網站 site-version.json。
+目前四款遊戲：星星貪食蛇、翻牌配對、俄羅斯方塊、鬍子老師的星星小徑。皆支援鍵盤與觸控、暫停／重玩／返回。v0.3.0 已完成本機、遠端 CI／部署與四款正式站限定操作驗收，發布程式提交 c18b299；平板實機等未驗範圍見 [進度](docs/STATUS.md)。
 
 ## 怎麼玩
 
