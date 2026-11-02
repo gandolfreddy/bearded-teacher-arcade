@@ -1,10 +1,10 @@
 # 大鬍子老師遊戲廣場
 
-Bearded Teacher Arcade · v0.3.0 · 2026-11-03
+Bearded Teacher Arcade · v0.4.0 · 2026-11-03
 
 **網址：https://gandolfreddy.github.io/bearded-teacher-arcade/**
 
-目前四款遊戲：星星貪食蛇、翻牌配對、俄羅斯方塊、鬍子老師的星星小徑。皆支援鍵盤與觸控、暫停／重玩／返回。v0.3.0 已完成本機、遠端 CI／部署與四款正式站限定操作驗收，發布程式提交 c18b299；平板實機等未驗範圍見 [進度](docs/STATUS.md)。
+目前六款遊戲：星星貪食蛇、翻牌配對、俄羅斯方塊、鬍子老師的星星小徑、直線賽車避障、迷你撞球。皆支援鍵盤與觸控、暫停／重玩／返回。v0.4.0 本機驗證通過，遠端 CI／部署與正式站驗收結果見 [進度](docs/STATUS.md)。
 
 ## 怎麼玩
 
@@ -14,8 +14,10 @@ Bearded Teacher Arcade · v0.3.0 · 2026-11-03
 | 翻牌配對 | 方向鍵選牌，Enter／空白鍵翻牌 | 點按卡片 |
 | 俄羅斯方塊 | ← → ↓ 移動；↑／X 順轉、Z 逆轉；Space 硬降；C／Shift Hold | 方向、旋轉、落到底按鈕與 Hold 框 |
 | 星星小徑 | ← →／A D 移動，Space／↑／W 跳躍 | 長按左右，另一指點跳躍 |
+| 直線賽車避障 | ← →／A D 換道，Space／↓／S 按住減速 | 左右換道與減速按鈕 |
+| 迷你撞球 | ← → 轉向，↑ ↓ 調力道，Space／Enter 擊球；可輸入角度 | 點按／拖曳球桌瞄準，力道滑桿與擊球按鈕 |
 
-點選開始後才進行遊戲；失焦會暫停，回來後手動繼續。貪食蛇每顆星星 10 分，碰到邊界或自己就結束。翻牌配對需找出全部 6 組，記錄本輪次數及秒數。方塊提供每顆一次的 Hold、接下來三顆 Next 及落點預覽。小徑需跳過缺口、避開或踩掉小怪並走到終點，星星不必集滿。四款目前皆無音訊與持久存檔。
+點選開始後才進行遊戲；失焦會暫停，回來後手動繼續。貪食蛇每顆星星 10 分，碰到邊界或自己就結束。翻牌配對需找出全部 6 組，記錄本輪次數及秒數。方塊提供每顆一次的 Hold、接下來三顆 Next 及落點預覽。小徑需跳過缺口、避開或踩掉小怪並走到終點，星星不必集滿。賽車需閃過來車抵達 1000 公尺；撞球需把六顆色球打進袋，白球落袋記犯規並回位。六款目前皆無音訊與持久存檔。
 
 ## 本機預覽
 
@@ -40,7 +42,7 @@ npm run build
 
 瀏覽器測試會自動啟停本輪預覽，須先停止佔用 5193 的本專案服務；不自行結束其他程式。預設使用已安裝 Google Chrome 的獨立 Playwright session，不沿用你的日常分頁或登入資料。@playwright/test 版本由 package-lock.json 鎖定；CI 安裝單一 Chromium headless shell。
 
-check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.3.0/。
+check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.4.0/。
 
 build 只複製網站到 dist/，包含 site-version.json 供發布版本核對，不包含開發文件、測試、依賴或 Git 資料。
 
@@ -55,6 +57,8 @@ games/                      # 所有遊戲 HTML 入口
   memory.html
   tetris.html
   star-trail.html
+  road-racer.html
+  mini-pool.html
   direction-lab.html        # 舊操作測試頁，正式清單不列出
   touch-lab.html
   assets/                   # 遊戲規則、共用生命週期與個別程式
@@ -74,15 +78,15 @@ docs/                       # 規劃、整合契約、歷史與證據
 
 ## 文件與畫面
 
-- [本版新增與驗收界線](docs/FEATURE-v0.3.0.md)
+- [本版新增與驗收界線](docs/FEATURE-v0.4.0.md)
 - [v0.2.1 修正紀錄](docs/RELEASE-v0.2.1.md)
 - [兩款遊戲與 CI/CD 成果](docs/RELEASE-v0.2.0.md)
 - [目前進度](docs/STATUS.md)
 - [需求與任務](docs/PLAN.md)
 - [遊戲整合契約](docs/GAME_SPEC.md)
-- [正式大廳截圖](docs/evidence/v0.3.0/games-lobby-desktop.png)
-- [Hold／Next 畫面](docs/evidence/v0.3.0/tetris-hold-next.png)
-- [跳躍小徑畫面](docs/evidence/v0.3.0/star-trail-tablet.png)
+- [正式大廳截圖](docs/evidence/v0.4.0/games-lobby-desktop.png)
+- [賽車終點](docs/evidence/v0.4.0/road-racer-finish.png)
+- [迷你撞球](docs/evidence/v0.4.0/mini-pool.png)
 
 平板實機與 Safari 等其他引擎尚未驗收；尺寸／觸控模擬不等同實機。沒有資料庫或玩家永久資料。
 

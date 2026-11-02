@@ -140,7 +140,7 @@ try{
     for(const id of ['tetris','star-trail']){
       await page.goto(base+'games/'+id+'.html');await page.getByRole('button',{name:'開始遊戲'}).click();
       await expect(page.locator('#status')).toHaveText('遊戲中');await expect(page.locator('.standalone')).toBeVisible();
-      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(4);
+      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(6);
     }
   });
   results.push({name:'新增遊戲無未處理 JavaScript 例外',status:errors.length?'failed':'passed'});

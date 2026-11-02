@@ -4,7 +4,7 @@ import {mkdir,writeFile,readFile} from 'node:fs/promises';
 const base='https://gandolfreddy.github.io/bearded-teacher-arcade/';
 const expected=process.env.BTA_EXPECTED_SHA;
 if(!expected)throw new Error('BTA_EXPECTED_SHA is required');
-const response=await fetch(base+'site-version.json?commit='+expected);
+const response=await fetch(base+'site-version.json?commit='+expected+'&verify='+Date.now());
 assert.equal(response.status,200);
 const version=await response.json();
 assert.equal(version.commit,expected);
@@ -15,7 +15,7 @@ const page=await context.newPage(),errors=[];
 page.on('pageerror',error=>errors.push(error.message));
 try{
   await page.goto(base+'?commit='+expected);
-  await expect(page.locator('.game-card')).toHaveCount(4);
+  await expect(page.locator('.game-card')).toHaveCount(6);
   await expect(page.getByRole('heading',{name:'星星貪食蛇'})).toBeVisible();
   await page.getByRole('link',{name:'開啟星星貪食蛇'}).click();
   await expect(page.locator('#game-frame')).toHaveAttribute('src',/\/snake\.html$/);
@@ -54,10 +54,25 @@ try{
   await page.keyboard.up('ArrowRight');await game.getByRole('button',{name:'暫停',exact:true}).click();
   await expect(game.locator('#status')).toContainText('已暫停');
   await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
+  for(const id of ['road-racer','mini-pool']){
+    await page.goto(base+'?commit='+expected+'#game='+id);
+    await expect(page.locator('#stage-status')).toContainText('準備好了');game=page.frameLocator('#game-frame');
+    await game.getByRole('button',{name:'開始遊戲'}).click();
+    if(id==='road-racer'){
+      await page.keyboard.press('ArrowLeft');await expect(game.locator('#lane')).toHaveText('1');
+      await page.keyboard.down('Space');await expect.poll(async()=>Number(await game.locator('#speed').textContent())).toBeLessThan(60);await page.keyboard.up('Space');
+      await expect.poll(async()=>Number(await game.locator('#distance').textContent())).toBeGreaterThan(0);
+      await game.getByRole('button',{name:'暫停',exact:true}).click();await expect(game.locator('#status')).toContainText('已暫停');
+    }else{
+      await page.keyboard.press('Space');await expect(game.locator('#shots')).toHaveText('1');
+      await expect(game.locator('#potted')).toHaveText('1',{timeout:8000});
+    }
+    await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
+  }
   const docsResponse=await fetch(base+'docs/STATUS.md?commit='+expected);
   assert.equal(docsResponse.status,404);
   assert.deepEqual(errors,[]);
   await mkdir('test-results',{recursive:true});
-  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','tetris hold/next/drop','star trail move/jump/pause','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
-  console.log('PASS deployed version, all four real games, return and publication scope');
+  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','tetris hold/next/drop','star trail move/jump/pause','racer steering/braking/distance/pause','pool shot/pocket','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
+  console.log('PASS deployed version, all six real games, return and publication scope');
 }finally{await context.close();await browser.close();}

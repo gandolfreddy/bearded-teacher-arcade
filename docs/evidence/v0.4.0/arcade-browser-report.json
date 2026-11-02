@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-02T20:07:15.299Z",
+  "browser": "156.0.8078.74",
+  "base": "http://127.0.0.1:5193/bearded-teacher-arcade/",
+  "results": [
+    {
+      "name": "方塊 Hold／Next 可見，第一次保留後本顆鎖定",
+      "status": "passed"
+    },
+    {
+      "name": "方塊旋轉、硬降推進 Next 並解鎖 Hold，重玩歸零",
+      "status": "passed"
+    },
+    {
+      "name": "方塊長按會連移，失焦暫停清除按鍵與計時",
+      "status": "passed"
+    },
+    {
+      "name": "方塊觸控軟降的取消事件不留下長按",
+      "status": "passed"
+    },
+    {
+      "name": "方塊連續硬降堆頂結束，重玩清空保留與分數",
+      "status": "passed"
+    },
+    {
+      "name": "小關卡鍵盤移動與跳躍、按鍵來源分開釋放",
+      "status": "passed"
+    },
+    {
+      "name": "小關卡以真實鍵盤輸入完整過關，重玩後回起點",
+      "status": "passed"
+    },
+    {
+      "name": "小關卡雙指同時移動與跳躍，單指放開不解除另一指",
+      "status": "passed"
+    },
+    {
+      "name": "新增遊戲觸控、Hold／Next 與尺寸 1280×720",
+      "status": "passed"
+    },
+    {
+      "name": "新增遊戲觸控、Hold／Next 與尺寸 1024×768",
+      "status": "passed"
+    },
+    {
+      "name": "新增遊戲觸控、Hold／Next 與尺寸 768×1024",
+      "status": "passed"
+    },
+    {
+      "name": "新增遊戲觸控、Hold／Next 與尺寸 390×844",
+      "status": "passed"
+    },
+    {
+      "name": "兩款新增遊戲獨立入口可開始，返回後不留下 iframe",
+      "status": "passed"
+    },
+    {
+      "name": "新增遊戲無未處理 JavaScript 例外",
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "limitation": "獨立 Chromium／Chrome 的鍵盤與多指事件模擬，不是平板實機。"
+}

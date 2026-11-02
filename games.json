@@ -68,6 +68,40 @@
         "keyboard": "← →／A D 移動，空白鍵／↑／W 跳躍。鬆開跳躍鍵後可再跳。",
         "touch": "長按左右移動，同時用另一指點「跳躍」。從上方踩掉小怪，避開缺口，到達旗子即可過關。"
       }
+    },
+    {
+      "id": "road-racer",
+      "title": "直線賽車避障",
+      "description": "在三車道直路穿梭，留意前方來車，平安抵達 1000 公尺終點！",
+      "entry": "./games/road-racer.html",
+      "thumbnail": "./assets/images/road-racer.svg",
+      "category": "反應與駕駛",
+      "kind": "game",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "← →／A D 換道，按住空白鍵／↓／S 減速。",
+        "touch": "點按左右換道，按住「減速」降低速度。每波障礙都有可通行車道。"
+      }
+    },
+    {
+      "id": "mini-pool",
+      "title": "迷你撞球",
+      "description": "轉個角度、掌握力道，把六顆色球送進球袋，來一場輕鬆清台練習。",
+      "entry": "./games/mini-pool.html",
+      "thumbnail": "./assets/images/mini-pool.svg",
+      "category": "瞄準與策略",
+      "kind": "game",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "球桌聚焦時，← → 轉向、↑ ↓ 調整力道，空白鍵／Enter 擊球；也可輸入方向角度。",
+        "touch": "觸控或拖曳球桌瞄準，拖動力道滑桿，再按「擊球」。等球停下後才能再打。白球落袋記犯規並安全回位。"
+      }
     }
   ]
 }
