@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "games": [
+    {
+      "id": "direction-lab",
+      "title": "方向操控練習",
+      "description": "讓小星星在格子間散步，試試鍵盤與畫面方向鍵。",
+      "entry": "./games/direction-lab.html",
+      "category": "操作示範",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "方向鍵或 WASD 移動星星；Tab 切換按鈕。",
+        "touch": "點按畫面上的方向按鈕。"
+      },
+      "kind": "demo"
+    },
+    {
+      "id": "touch-lab",
+      "title": "觸控節奏練習",
+      "description": "輕點星星，感受觸控與鍵盤操作的節奏。",
+      "entry": "./games/touch-lab.html",
+      "category": "操作示範",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "開始後，聚焦星星按 Enter 或空白鍵。",
+        "touch": "按「開始練習」，再點按星星。"
+      },
+      "kind": "demo"
+    }
+  ]
+}

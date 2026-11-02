@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "algorithm": "SHA256",
+  "files": {
+    "index.html": "959e0fa03b6a1046ccbcbed42c103e8d0b06853283d5c3cdcda2f5dedff732d0",
+    "games.json": "a73cbb3d4d140af79713e7c89aff340da3615b2f1d2db978a2041f3d089d356b",
+    "package.json": "f084e5cf455fe7e688d967f91616d192dfb4da1d16c54cdc6d403e4dd174d834",
+    "package-lock.json": "fc83e16ee5010f3fa9c0fafde267fc5cea510ae9401031072e82ff950f0db3f4",
+    "assets/css/site.css": "e4f9e184ca93e1f02107919c72a08c6bce1a32318b2202f8625cba0aaef31f3e",
+    "assets/images/beard.svg": "ffdc3f877ba3c5186e92d4ce1fc8b61d23b8f41061a00e2c483b94ea02b86341",
+    "assets/js/app.mjs": "a2fb346aa9555715fb4fda28466579b38161f88a0390b250c5d0a8bc680744e0",
+    "assets/js/core.mjs": "64e27e4e545fd7754d297c0d064249dc2015abfe45e79ddc38ff95a0b963005a",
+    "games/direction-lab.html": "88f8071a385dda781cd5ee8015f2d9272e20c655bab7911add0c8e792a001749",
+    "games/touch-lab.html": "442c48aada9aa566935daa02d0536f1271a43a9aa8873dd407ba441f58730764",
+    "games/assets/demo.css": "d23e6b27444ce4b91220421997fb3b3df3dea5fccdc72b66fcea4063d9f1b1ca",
+    "games/assets/demo.mjs": "c7ef4d061420bf5e695430e216570b1061e678e12ebd78fa2edf0ff00a71dd96",
+    "tools/serve.mjs": "d08ba6289d740976e43e629ce4139e2447f2a3953598a46475c51428371fa9a1",
+    "tests/core.test.mjs": "d1aa306de07e7db42cae67f1c7ec696c3251411f796dff1916455783a27b7f01",
+    "tests/browser.mjs": "ae32906c5fbf30dcf1e6941d2dff760e13b2dbde80dfecb982f8d820fd6e4781"
+  }
+}
