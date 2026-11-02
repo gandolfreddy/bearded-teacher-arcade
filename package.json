@@ -1,6 +1,6 @@
 {
   "name": "bearded-teacher-arcade",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "test:browser": "node tests/browser.mjs",
     "check": "node tools/check.mjs",
     "build": "node tools/build.mjs",
-    "test:browser:ci": "node tools/browser-ci.mjs tests/browser.mjs tests/games-browser.mjs",
+    "test:browser:ci": "node tools/browser-ci.mjs tests/browser.mjs tests/games-browser.mjs tests/arcade-browser.mjs",
     "test:games": "node tests/games-browser.mjs"
   },
   "devDependencies": {

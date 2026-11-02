@@ -1,7 +1,7 @@
 // The host owns all recurring work; games only receive active foreground time.
 export class GameHost {
-  constructor({id,onTick,onReset,onFocus}) {
-    Object.assign(this,{id,onTick,onReset,onFocus});
+  constructor({id,onTick,onReset,onFocus,onPause=()=>{}}) {
+    Object.assign(this,{id,onTick,onReset,onFocus,onPause});
     this.active=false;this.ended=false;this.elapsed=0;
     this.controller=new AbortController();
     const options={signal:this.controller.signal}, $=id=>document.getElementById(id);
@@ -44,18 +44,21 @@ export class GameHost {
   }
   pause() {
     if(!this.active)return;
+    this.onPause();
     this.active=false;this.start.disabled=false;this.start.textContent='繼續遊戲';this.pauseButton.disabled=true;
     this.status.textContent='已暫停，按「繼續遊戲」再出發。';document.body.dataset.phase='paused';
   }
   finish(message) {
+    this.onPause();
     this.active=false;this.ended=true;this.start.disabled=true;this.pauseButton.disabled=true;
     this.status.textContent=message;document.body.dataset.phase='finished';
   }
   reset() {
+    this.onPause();
     this.active=false;this.ended=false;this.elapsed=0;
     this.start.disabled=false;this.start.textContent='開始遊戲';this.pauseButton.disabled=true;
     this.status.textContent='準備好了，按「開始遊戲」。';document.body.dataset.phase='ready';
     document.getElementById('seconds').value='0';this.onReset();this.start.focus();
   }
-  dispose() {this.active=false;clearInterval(this.timer);this.controller.abort();}
+  dispose() {this.onPause();this.active=false;clearInterval(this.timer);this.controller.abort();}
 }

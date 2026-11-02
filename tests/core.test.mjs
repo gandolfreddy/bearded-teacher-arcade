@@ -75,6 +75,6 @@ test('遊戲回報錯誤也卸載，不保留背景工作', () => {
 test('實際清單的入口檔存在且都位於 games/', async () => {
   const raw = JSON.parse(await readFile(new URL('../games.json',import.meta.url),'utf8'));
   const parsed = validateCatalog(raw,base);
-  assert.equal(parsed.length,2);
+  assert.deepEqual(parsed.map(game=>game.id),['snake','memory','tetris','star-trail']);
   for (const item of raw.games) assert.ok((await stat(new URL('../' + item.entry,import.meta.url))).isFile());
 });

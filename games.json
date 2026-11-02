@@ -34,6 +34,40 @@
         "keyboard": "方向鍵選牌，Enter 或空白鍵翻牌；Tab 移至控制按鈕。",
         "touch": "點按卡片，每次翻開兩張。相同圖案會留下，不同圖案稍後蓋回。"
       }
+    },
+    {
+      "id": "tetris",
+      "title": "俄羅斯方塊",
+      "description": "排好下一步！保留一顆好用的方塊，看著 Next 預覽消除整行。",
+      "entry": "./games/tetris.html",
+      "thumbnail": "./assets/images/tetris.svg",
+      "category": "堆疊與策略",
+      "kind": "game",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "← → 移動，↓ 軟降；↑／X 順轉、Z 逆轉。空白鍵落到底，C／Shift 保留。",
+        "touch": "點按或長按方向鍵；旋轉、落到底與 Hold 都有獨立按鈕。每顆只能 Hold 一次，鎖定後可再用。"
+      }
+    },
+    {
+      "id": "star-trail",
+      "title": "鬍子老師的星星小徑",
+      "description": "一場短短的跳躍冒險：跨過缺口、踩掉小怪，朝終點旗前進。",
+      "entry": "./games/star-trail.html",
+      "thumbnail": "./assets/images/star-trail.svg",
+      "category": "跳躍與冒險",
+      "kind": "game",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "instructions": {
+        "keyboard": "← →／A D 移動，空白鍵／↑／W 跳躍。鬆開跳躍鍵後可再跳。",
+        "touch": "長按左右移動，同時用另一指點「跳躍」。從上方踩掉小怪，避開缺口，到達旗子即可過關。"
+      }
     }
   ]
 }

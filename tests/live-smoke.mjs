@@ -15,7 +15,7 @@ const page=await context.newPage(),errors=[];
 page.on('pageerror',error=>errors.push(error.message));
 try{
   await page.goto(base+'?commit='+expected);
-  await expect(page.locator('.game-card')).toHaveCount(2);
+  await expect(page.locator('.game-card')).toHaveCount(4);
   await expect(page.getByRole('heading',{name:'星星貪食蛇'})).toBeVisible();
   await page.getByRole('link',{name:'開啟星星貪食蛇'}).click();
   await expect(page.locator('#game-frame')).toHaveAttribute('src',/\/snake\.html$/);
@@ -37,10 +37,27 @@ try{
   await expect(game.locator('#moves')).toHaveText('1');
   await expect(game.locator('.demo-caption')).toHaveCount(0);
   await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
+  await page.getByRole('link',{name:'開啟俄羅斯方塊'}).click();
+  await expect(page.locator('#game-frame')).toHaveAttribute('src',/\/tetris\.html$/);
+  await expect(page.locator('#stage-status')).toContainText('準備好了');game=page.frameLocator('#game-frame');
+  await game.getByRole('button',{name:'開始遊戲'}).click();await expect(game.locator('#status')).toHaveText('遊戲中');
+  await page.keyboard.press('c');await expect(game.locator('#hold-name')).not.toHaveText('—');
+  await expect(game.getByRole('heading',{name:/NEXT/})).toBeVisible();
+  await page.keyboard.press('Space');await expect(game.locator('#hold-button')).toBeEnabled();
+  await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
+  await page.getByRole('link',{name:'開啟鬍子老師的星星小徑'}).click();
+  await expect(page.locator('#game-frame')).toHaveAttribute('src',/\/star-trail\.html$/);
+  await expect(page.locator('#stage-status')).toContainText('準備好了');game=page.frameLocator('#game-frame');
+  await game.getByRole('button',{name:'開始遊戲'}).click();await expect(game.locator('#status')).toHaveText('遊戲中');
+  await page.keyboard.down('ArrowRight');await page.keyboard.press('Space');
+  await expect.poll(async()=>Number(await game.locator('#progress').textContent())).toBeGreaterThan(0);
+  await page.keyboard.up('ArrowRight');await game.getByRole('button',{name:'暫停',exact:true}).click();
+  await expect(game.locator('#status')).toContainText('已暫停');
+  await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
   const docsResponse=await fetch(base+'docs/STATUS.md?commit='+expected);
   assert.equal(docsResponse.status,404);
   assert.deepEqual(errors,[]);
   await mkdir('test-results',{recursive:true});
-  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
-  console.log('PASS deployed version, both real games, return and publication scope');
+  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','tetris hold/next/drop','star trail move/jump/pause','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
+  console.log('PASS deployed version, all four real games, return and publication scope');
 }finally{await context.close();await browser.close();}

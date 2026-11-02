@@ -23,8 +23,8 @@ async function open(page,id) {
 async function noOverflow(frame) {assert.ok(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
 async function shot(page,name) {await page.screenshot({path:fileURLToPath(new URL(name,evidence)),fullPage:true});}
 try{
-  await run('正式大廳只列出兩款遊戲與對應說明',async page=>{
-    await page.goto(base);await expect(page.locator('.game-card')).toHaveCount(2);
+  await run('正式大廳列出四款遊戲與對應說明',async page=>{
+    await page.goto(base);await expect(page.locator('.game-card')).toHaveCount(4);
     await expect(page.getByRole('heading',{name:'星星貪食蛇'})).toBeVisible();
     await expect(page.getByRole('heading',{name:'翻牌配對'})).toBeVisible();
     await expect(page.locator('.card-kicker')).not.toContainText(['操作示範','操作示範']);
@@ -116,7 +116,7 @@ try{
     for(const id of ['snake','memory']){
       await page.goto(base+'games/'+id+'.html');await expect(page.locator('.standalone')).toBeVisible();
       await page.getByRole('button',{name:'開始遊戲'}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
-      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(2);
+      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(4);
       await page.goBack();await expect(page.getByRole('button',{name:/開始遊戲|繼續遊戲/})).toBeEnabled();
       await page.getByRole('button',{name:/開始遊戲|繼續遊戲/}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
     }
