@@ -71,3 +71,7 @@ schemaVersion、id、title、description、entry、inputs、instructions 為必�
 清單的 kind 可使用 demo 標示操作測試頁；正式遊戲省略或使用 game。網站外框程式實際採 assets/js/app.mjs 與 core.mjs。無縮圖或站外縮圖均保留預設圖案；載入失敗的縮圖回退。所有 DOM 文字透過 textContent 插入。遊戲內回大廳連結僅於獨立開啟時顯示，嵌入時使用外框返回，避免巢狀載入大廳。
 
 焦點進入 iframe 不當作離開網站；暫停由遊戲本身 blur／visibilitychange 與外框 visibilitychange 負責。父頁在 pagehide 卸載後，若從瀏覽器前後頁快取恢復，pageshow 重新載入清單與目前路由。
+
+## 六、v0.2.0 接續
+
+games.json 正式列出 snake 與 memory；兩款均為 kind=game 並實作必要通訊。GameHost 共用生命週期，獨立核心規則位於 games/assets/models.mjs。舊操作示範清單放在 tests/fixtures/catalog.json，僅回歸測試攔截使用；正式大廳不列出。直接開啟的遊戲可用自己的開始／暫停／重新開始，不需外框。沒有音訊或持久成績儲存。

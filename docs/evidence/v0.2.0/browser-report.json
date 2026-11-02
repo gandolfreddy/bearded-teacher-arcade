@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-02T18:35:08.733Z",
+  "browser": "156.0.8078.74",
+  "base": "http://127.0.0.1:5193/bearded-teacher-arcade/",
+  "results": [
+    {
+      "name": "大廳與搜尋／空結果清除",
+      "status": "passed"
+    },
+    {
+      "name": "鍵盤啟動與方向輸入、重玩、返回焦點",
+      "status": "passed"
+    },
+    {
+      "name": "直接連結、重整與上一頁／下一頁",
+      "status": "passed"
+    },
+    {
+      "name": "連續切換 20 次不累積 iframe 或舊執行環境",
+      "status": "passed"
+    },
+    {
+      "name": "無效 id 與非法路由顯示錯誤且不載入 iframe",
+      "status": "passed"
+    },
+    {
+      "name": "清單網路錯誤可重試",
+      "status": "passed"
+    },
+    {
+      "name": "格式錯誤及外部入口清單不能啟動遊戲",
+      "status": "passed"
+    },
+    {
+      "name": "沒有 ready 的載入逾時與重試",
+      "status": "passed"
+    },
+    {
+      "name": "切出 iframe 暫停、按鍵不殘留、回來需手動恢復",
+      "status": "passed"
+    },
+    {
+      "name": "遊戲錯誤回報卸載 frame，外框訊息冒用無效",
+      "status": "passed"
+    },
+    {
+      "name": "獨立遊戲網址可操作且不依賴父頁",
+      "status": "passed"
+    },
+    {
+      "name": "版面與觸控模擬 1280×720",
+      "status": "passed"
+    },
+    {
+      "name": "版面與觸控模擬 1024×768",
+      "status": "passed"
+    },
+    {
+      "name": "版面與觸控模擬 768×1024",
+      "status": "passed"
+    },
+    {
+      "name": "版面與觸控模擬 390×844",
+      "status": "passed"
+    },
+    {
+      "name": "嵌入時隱藏獨立返回連結，跳到內容不退出遊戲",
+      "status": "passed"
+    },
+    {
+      "name": "主頁與遊戲 JavaScript 沒有未處理例外",
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "limitation": "Chromium/Chrome 模擬尺寸與觸控，並非平板實機或 Safari 驗收。"
+}

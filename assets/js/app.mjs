@@ -13,7 +13,7 @@ const session = new GameSession({
     $('stage').setAttribute('aria-busy', String(state === 'loading'));
     $('play-error').hidden = state !== 'error';
     $('restart').disabled = state !== 'ready';
-    $('stage-status').textContent = state === 'loading' ? '正在準備操作示範…' : state === 'ready' ? '準備好了。請在下方開始練習。' : '載入未完成。';
+    $('stage-status').textContent = state === 'loading' ? '正在準備遊戲…' : state === 'ready' ? '準備好了。請在下方開始。' : '載入未完成。';
     if (state === 'error') $('play-message').textContent = message;
   }
 });
@@ -31,7 +31,7 @@ function renderCards() {
     art.setAttribute('aria-hidden', 'true');
     const pattern = el('div', 'art-grid');
     for (const symbol of ['·','↑','·','←','✦','→','·','↓','·']) pattern.append(el('span','',symbol));
-    art.append(pattern, el('span','art-label','PLAY LAB / ' + String(index + 1).padStart(2,'0')));
+    art.append(pattern, el('span','art-label',(game.kind === 'demo' ? 'PLAY LAB / ' : 'LET’S PLAY / ') + String(index + 1).padStart(2,'0')));
     if (game.thumbnail) {
       const img = el('img'); img.src = game.thumbnail; img.alt = ''; img.loading = 'lazy';
       img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
@@ -46,7 +46,7 @@ function renderCards() {
     link.addEventListener('click', () => {lastCard = link.id;});
     bottom.append(tags, link); body.append(bottom); card.append(art, body); return card;
   }));
-  $('result-count').textContent = '共 ' + games.length + ' 個操作示範' + (visible.length !== games.length ? '，找到 ' + visible.length + ' 個結果' : '');
+  $('result-count').textContent = '共 ' + games.length + ' 款遊戲' + (visible.length !== games.length ? '，找到 ' + visible.length + ' 個結果' : '');
   $('empty').hidden = visible.length !== 0 || !$('catalog-error').hidden;
 }
 function route() {
@@ -61,11 +61,12 @@ function route() {
     return;
   }
   const game = games.find(game => game.id === id);
-  if (!game) { showRouteError('找不到這款遊戲。你可以返回大廳，選擇目前提供的操作示範。'); return; }
+  if (!game) { showRouteError('找不到這款遊戲。你可以返回大廳，選擇目前提供的遊戲。'); return; }
   selected = game;
   $('lobby').hidden = true; $('player').hidden = false;
   $('player-title').textContent = game.title;
   document.querySelector('.demo-caption').hidden = game.kind !== 'demo';
+  $('gameplay-hint').textContent = game.kind === 'demo' ? '點選「開始練習」後即可操作。離開視窗會暫停，回來後按「繼續練習」。' : '點選「開始遊戲」後即可操作。離開視窗會暫停，回來後按「繼續遊戲」。';
   $('keyboard-help').textContent = game.instructions.keyboard || '這款遊戲未提供鍵盤操作。';
   $('touch-help').textContent = game.instructions.touch || '這款遊戲未提供觸控操作。';
   document.title = game.title + '｜大鬍子老師遊戲廣場';

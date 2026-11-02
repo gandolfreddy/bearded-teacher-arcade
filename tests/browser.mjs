@@ -1,16 +1,18 @@
 import {chromium, expect} from '@playwright/test';
 import assert from 'node:assert/strict';
-import {mkdir, writeFile} from 'node:fs/promises';
+import {mkdir, writeFile, readFile} from 'node:fs/promises';
 const base = process.env.BTA_URL || 'http://127.0.0.1:5193/bearded-teacher-arcade/';
 const evidence = new URL('../test-results/',import.meta.url);
 await mkdir(evidence,{recursive:true});
 const browser = await chromium.launch({...(process.env.BTA_BROWSER === 'chromium' ? {} : {channel:'chrome'}),headless:true});
+const demoCatalog=JSON.parse(await readFile(new URL('./fixtures/catalog.json',import.meta.url),'utf8'));
 const results = [], errors = [];
 async function run(name, fn) {
   try {await fn(); results.push({name,status:'passed'}); console.log('PASS ' + name);}
   catch(error) {results.push({name,status:'failed',message:error.message});console.log('FAIL ' + name + '\n' + error.stack);}
 }
 const context = await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW'});
+await context.route('**/games.json',route=>route.fulfill({json:demoCatalog}));
 const page = await context.newPage();
 page.on('pageerror',error=>errors.push(error.message));
 let navigation = 0;
@@ -84,7 +86,7 @@ try {
     await expect(page.locator('#catalog-error')).toBeHidden();
   });
   await run('格式錯誤及外部入口清單不能啟動遊戲',async()=>{
-    const raw = await (await page.request.get(base+'games.json')).json();
+    const raw = structuredClone(demoCatalog);
     for (const data of [{schemaVersion:1,games:[raw.games[0],raw.games[0]]},{schemaVersion:1,games:[{...raw.games[0],entry:'https://example.com/evil.html'}]}]) {
       await page.route('**/games.json',route=>route.fulfill({json:data}));
       await fresh(base+'#game=direction-lab');
@@ -141,6 +143,7 @@ try {
   for (const viewport of [{width:1280,height:720},{width:1024,height:768},{width:768,height:1024},{width:390,height:844}]) {
     await run('版面與觸控模擬 '+viewport.width+'×'+viewport.height,async()=>{
       const ctx = await browser.newContext({viewport,hasTouch:true,locale:'zh-TW'});
+      await ctx.route('**/games.json',route=>route.fulfill({json:demoCatalog}));
       const p = await ctx.newPage();
       try {
         await p.goto(base); await expect(p.locator('.game-card')).toHaveCount(2); await noOverflow(p);
