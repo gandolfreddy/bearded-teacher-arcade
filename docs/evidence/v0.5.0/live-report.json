@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-03T09:07:21.154Z",
+  "base": "https://gandolfreddy.github.io/bearded-teacher-arcade/",
+  "version": {
+    "version": "0.5.0",
+    "commit": "7734de5ab2ed67c314daf4675faa128eb2d4bb14"
+  },
+  "checks": [
+    "version matches deployed commit",
+    "real catalog",
+    "snake start/pause",
+    "memory keyboard flip",
+    "return unloads frame",
+    "tetris hold/next/drop",
+    "star trail move/jump/pause",
+    "racer steering/braking/distance/pause",
+    "pool triangle initial cue/break/settle",
+    "developer docs excluded"
+  ],
+  "errors": [],
+  "conclusion": "passed"
+}
