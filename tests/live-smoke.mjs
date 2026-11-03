@@ -64,8 +64,10 @@ try{
       await expect.poll(async()=>Number(await game.locator('#distance').textContent())).toBeGreaterThan(0);
       await game.getByRole('button',{name:'暫停',exact:true}).click();await expect(game.locator('#status')).toContainText('已暫停');
     }else{
+      await expect(game.locator('#board')).toHaveAttribute('aria-label',/白球位於 160, 180/);
       await page.keyboard.press('Space');await expect(game.locator('#shots')).toHaveText('1');
-      await expect(game.locator('#potted')).toHaveText('1',{timeout:8000});
+      await expect(game.locator('#board')).not.toHaveAttribute('aria-label',/白球位於 160, 180/,{timeout:8000});
+      await expect(game.locator('#shoot')).toBeEnabled({timeout:8000});
     }
     await page.locator('#back-lobby').click();await expect(page.locator('iframe')).toHaveCount(0);
   }
@@ -73,6 +75,6 @@ try{
   assert.equal(docsResponse.status,404);
   assert.deepEqual(errors,[]);
   await mkdir('test-results',{recursive:true});
-  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','tetris hold/next/drop','star trail move/jump/pause','racer steering/braking/distance/pause','pool shot/pocket','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
+  await writeFile('test-results/live-report.json',JSON.stringify({date:new Date().toISOString(),base,version,checks:['version matches deployed commit','real catalog','snake start/pause','memory keyboard flip','return unloads frame','tetris hold/next/drop','star trail move/jump/pause','racer steering/braking/distance/pause','pool triangle initial cue/break/settle','developer docs excluded'],errors,conclusion:'passed'},null,2)+'\n');
   console.log('PASS deployed version, all six real games, return and publication scope');
 }finally{await context.close();await browser.close();}

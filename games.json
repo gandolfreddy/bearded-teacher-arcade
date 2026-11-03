@@ -89,7 +89,7 @@
     {
       "id": "mini-pool",
       "title": "迷你撞球",
-      "description": "轉個角度、掌握力道，把六顆色球送進球袋，來一場輕鬆清台練習。",
+      "description": "從三角形球陣開球，掌握角度與力道，把六顆色球全部送進球袋。",
       "entry": "./games/mini-pool.html",
       "thumbnail": "./assets/images/mini-pool.svg",
       "category": "瞄準與策略",

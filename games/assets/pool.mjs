@@ -2,7 +2,7 @@ import {TABLE,POCKETS,BALL_COLORS,createPool,shootPool,stepPool,aimPool} from '.
 import {GameHost} from './host.mjs';
 import {bindGameInput} from './input.mjs';
 const $=id=>document.getElementById(id),board=$('board'),ctx=board.getContext('2d');
-let state=createPool(),angle=270,power=45,accumulator=0,repeat=0,drag=null,input;
+let state=createPool(),angle=0,power=85,accumulator=0,repeat=0,drag=null,input;
 const radians=()=>angle*Math.PI/180;
 function enableControls(enabled){for(const id of ['aim-angle','power','shoot'])$(id).disabled=!enabled;}
 function draw(){
@@ -53,7 +53,7 @@ function act(action){
 const host=new GameHost({
   id:'mini-pool',onFocus:()=>{draw();board.focus();},
   onPause:()=>{input?.clear();cancelDrag();repeat=0;enableControls(false);},
-  onReset:()=>{state=createPool();angle=270;power=45;accumulator=0;repeat=0;draw();},
+  onReset:()=>{state=createPool();angle=0;power=85;accumulator=0;repeat=0;draw();},
   onTick:dt=>{
     if(state.phase==='aiming'){
       const held=['left','right','up','down'].filter(action=>input.active(action));

@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-03T08:27:06.078Z",
+  "results": [
+    {
+      "name": "triangle rack initial view and restart",
+      "status": "passed"
+    },
+    {
+      "name": "six catalog cards and thumbnails load",
+      "status": "passed"
+    },
+    {
+      "name": "racer steering, braking, release and pause",
+      "status": "passed"
+    },
+    {
+      "name": "racer collision and restart",
+      "status": "passed"
+    },
+    {
+      "name": "racer full 1000m via keyboard controls",
+      "status": "passed"
+    },
+    {
+      "name": "pool triangle break blocks repeat and pauses physics",
+      "status": "passed"
+    },
+    {
+      "name": "pool keyboard angles, power limits and restart",
+      "status": "passed"
+    },
+    {
+      "name": "pool triangle break and normal shots clear table",
+      "status": "passed"
+    },
+    {
+      "name": "scaled touch aiming and cancel restores original angle",
+      "status": "passed"
+    },
+    {
+      "name": "controls fit 1280x900",
+      "status": "passed"
+    },
+    {
+      "name": "controls fit 1024x768",
+      "status": "passed"
+    },
+    {
+      "name": "controls fit 768x1024",
+      "status": "passed"
+    },
+    {
+      "name": "controls fit 800x600",
+      "status": "passed"
+    },
+    {
+      "name": "racer touch brake cancel clears input",
+      "status": "passed"
+    },
+    {
+      "name": "pool orientation change retains state and scaled aiming",
+      "status": "passed"
+    },
+    {
+      "name": "standalone entries start and reset",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}

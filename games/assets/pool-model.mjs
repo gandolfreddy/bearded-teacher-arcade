@@ -2,7 +2,12 @@ export const TABLE={width:640,height:360,left:40,right:600,top:40,bottom:320,rad
 export const POCKETS=[{x:40,y:40},{x:320,y:40},{x:600,y:40},{x:40,y:320},{x:320,y:320},{x:600,y:320}];
 export const BALL_COLORS=['#fcfaf0','#c45c58','#e2ad42','#4d84ae','#8e6eaa','#d48642','#5a9a79'];
 export function createPool(){
-  const positions=[[320,180],[116,78],[320,78],[524,78],[116,282],[320,282],[524,282]];
+  // Six balls in a 1-2-3 equilateral rack, with a small non-overlapping gap.
+  const spacing=TABLE.radius*2+.2,advance=spacing*Math.sqrt(3)/2;
+  const positions=[[160,180]];
+  for(let column=0;column<3;column++)for(let row=0;row<=column;row++){
+    positions.push([420+column*advance,180+(row-column/2)*spacing]);
+  }
   return {balls:positions.map(([x,y],id)=>({id,x,y,vx:0,vy:0,potted:false})),shots:0,fouls:0,phase:'aiming',status:'playing',lastFoul:false};
 }
 export function shootPool(state,angle,power){

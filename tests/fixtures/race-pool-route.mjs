@@ -1,5 +1,5 @@
 import {createRacer,steerRacer,stepRacer} from '../../games/assets/racer-model.mjs';
-export const poolRoute=[[207,45],[91,85],[316,45],[352,45],[158,65],[1,85]];
+export const poolRoute=[[0,85],[72,85],[34,45],[310,85],[227,45],[0,45],[115,100]];
 export function raceRoute(){
   let state=createRacer(),index=0;const actions=[],values=[0,.2,.4,.6,.8,.99],random=()=>values[index++%values.length];
   for(let t=0;t<1600&&state.status==='playing';t++){
