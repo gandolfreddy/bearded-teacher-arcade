@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-03T08:57:37.937Z",
+  "browser": "156.0.8078.74",
+  "base": "http://127.0.0.1:5193/bearded-teacher-arcade/",
+  "results": [
+    {
+      "name": "正式大廳列出六款遊戲與對應說明",
+      "status": "passed"
+    },
+    {
+      "name": "貪食蛇反向無效、鍵盤轉向、碰牆與重新開始",
+      "status": "passed"
+    },
+    {
+      "name": "貪食蛇失焦暫停後不移動或計時，恢復需手動",
+      "status": "passed"
+    },
+    {
+      "name": "翻牌可用方向鍵及 Enter，重複同一張不計步",
+      "status": "passed"
+    },
+    {
+      "name": "翻牌不配對期間鎖定第三張，暫停保留翻面與剩餘時間",
+      "status": "passed"
+    },
+    {
+      "name": "翻牌完整遊玩六組成功，再重新開始歸零",
+      "status": "passed"
+    },
+    {
+      "name": "正式遊戲觸控與轉向尺寸 1280×720",
+      "status": "passed"
+    },
+    {
+      "name": "正式遊戲觸控與轉向尺寸 1024×768",
+      "status": "passed"
+    },
+    {
+      "name": "正式遊戲觸控與轉向尺寸 768×1024",
+      "status": "passed"
+    },
+    {
+      "name": "正式遊戲觸控與轉向尺寸 390×844",
+      "status": "passed"
+    },
+    {
+      "name": "兩款正式遊戲獨立開啟與前後頁恢復可操作",
+      "status": "passed"
+    },
+    {
+      "name": "模組慢載入時嵌入操作區不顯示，ready 後才能開始",
+      "status": "passed"
+    },
+    {
+      "name": "獨立遊戲模組慢載入時開始鈕停用",
+      "status": "passed"
+    },
+    {
+      "name": "正式遊戲無未處理 JavaScript 例外",
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "limitation": "獨立瀏覽器與觸控模擬，非平板實機驗收。"
+}

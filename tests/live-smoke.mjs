@@ -1,3 +1,4 @@
+import {enableTestAccount} from './fixtures/account.mjs';
 import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
@@ -11,7 +12,7 @@ assert.equal(version.commit,expected);
 assert.equal(version.version,JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8')).version);
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW'});
-const page=await context.newPage(),errors=[];
+const page=await context.newPage(),errors=[];await enableTestAccount(page);
 page.on('pageerror',error=>errors.push(error.message));
 try{
   await page.goto(base+'?commit='+expected);

@@ -1,3 +1,4 @@
+import {enableTestAccount,signInTestAccount} from './fixtures/account.mjs';
 import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -6,7 +7,7 @@ const base=process.env.BTA_URL||'http://127.0.0.1:5193/bearded-teacher-arcade/';
 await mkdir('test-results',{recursive:true});
 const browser=await chromium.launch({...(process.env.BTA_BROWSER==='chromium'?{}:{channel:'chrome'}),headless:true});
 const results=[],errors=[];
-async function run(name,fn,options={}){const context=await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW',...options});const page=await context.newPage();page.on('pageerror',e=>errors.push({name,message:e.message}));try{await page.clock.install({time:new Date('2026-11-03T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-03T00:00:00Z'));await fn(page);results.push({name,status:'passed'});console.log('PASS '+name);}catch(e){results.push({name,status:'failed',message:e.message});console.log('FAIL '+name+'\n'+e.stack);}finally{await context.close();}}
+async function run(name,fn,options={}){const context=await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW',...options});const page=await context.newPage();await enableTestAccount(page);page.on('pageerror',e=>errors.push({name,message:e.message}));try{await page.clock.install({time:new Date('2026-11-03T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-03T00:00:00Z'));await fn(page);results.push({name,status:'passed'});console.log('PASS '+name);}catch(e){results.push({name,status:'failed',message:e.message});console.log('FAIL '+name+'\n'+e.stack);}finally{await context.close();}}
 async function open(page,id){await page.goto(base+'#game='+id);await expect(page.locator('#stage-status')).toContainText('準備好了');const f=page.frameLocator('#game-frame');await f.getByRole('button',{name:'開始遊戲'}).click();await expect(f.locator('#status')).toHaveText('遊戲中');return f;}
 async function power(f,value){await f.locator('#power').focus();await f.locator('#power').press('Home');for(let p=10;p<value;p+=5)await f.locator('#power').press('ArrowRight');}
 try{

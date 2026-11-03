@@ -1,23 +1,31 @@
-# 大鬍子老師遊戲廣場
+# 大鬍子老師遊戲廣場 · 遊戲島
 
-Bearded Teacher Arcade · v0.4.1 · 2026-11-03
+Bearded Teacher Arcade · v0.5.0 · 2026-11-03
 
 **網址：https://gandolfreddy.github.io/bearded-teacher-arcade/**
 
-目前六款遊戲：星星貪食蛇、翻牌配對、俄羅斯方塊、鬍子老師的星星小徑、直線賽車避障、迷你撞球。皆支援鍵盤與觸控、暫停／重玩／返回。v0.4.1 三角形球陣開球已上線，發布程式提交 5df3981；本機、遠端及正式站驗收範圍見 [進度](docs/STATUS.md)。
+以 2.5D 像素全景島探索六款小遊戲。每次開啟網站先登入／註冊；註冊可選頭髮、性別、表情與衣著。點按地圖或右上角小地圖讓角色移動，走到遊戲小屋門口，再按「進入遊戲」。也可用遊戲導覽或原遊戲清單。發布狀態見 [目前進度](docs/STATUS.md)。
+
+## 帳號與資料
+
+帳號只輸入名稱、不用密碼；知道名稱的人都能在同一瀏覽器使用該角色。這是使用者已選擇的本機角色識別方式，不提供身分驗證。
+
+本版依使用者後續指示採 localStorage，儲存帳號、外觀與島上位置。資料限定目前瀏覽器與網站來源，不會跨裝置同步，清除網站資料會移除角色；Firebase 與多人在線延後。移動停止後合併儲存，失敗會顯示「尚未儲存」並可重試。格式損毀不默默覆寫；舊分頁版本衝突需重新登入，localStorage 無跨分頁交易保證。
 
 ## 怎麼玩
 
+島上以點按移動為主；方向鍵可微調，Enter 進入附近遊戲。「遊戲導覽」提供可用鍵盤選擇的目的地。無法穿過海水、樹與小屋。每個本機帳號有自己的外觀與位置，這版只顯示自己的角色。
+
 | 遊戲 | 鍵盤 | 觸控 |
 |---|---|---|
-| 星星貪食蛇 | 方向鍵／WASD 轉向 | 畫面方向鍵 |
+| 星星貪食蛇 | 方向鍵／WASD | 畫面方向鍵 |
 | 翻牌配對 | 方向鍵選牌，Enter／空白鍵翻牌 | 點按卡片 |
-| 俄羅斯方塊 | ← → ↓ 移動；↑／X 順轉、Z 逆轉；Space 硬降；C／Shift Hold | 方向、旋轉、落到底按鈕與 Hold 框 |
-| 星星小徑 | ← →／A D 移動，Space／↑／W 跳躍 | 長按左右，另一指點跳躍 |
-| 直線賽車避障 | ← →／A D 換道，Space／↓／S 按住減速 | 左右換道與減速按鈕 |
-| 迷你撞球 | ← → 轉向，↑ ↓ 調力道，Space／Enter 擊球；可輸入角度 | 點按／拖曳球桌瞄準，力道滑桿與擊球按鈕 |
+| 俄羅斯方塊 | ← → ↓ 移動，↑／X／Z 旋轉，Space 硬降，C／Shift Hold | 方向／旋轉／落到底／Hold |
+| 星星小徑 | ← →／A D 移動，Space／↑／W 跳躍 | 左右與跳躍 |
+| 直線賽車 | ← →／A D 換道，Space／↓／S 減速 | 換道／減速 |
+| 迷你撞球 | ← → 轉向，↑ ↓ 調力道，Space／Enter 擊球 | 瞄準／力道／擊球 |
 
-點選開始後才進行遊戲；失焦會暫停，回來後手動繼續。貪食蛇每顆星星 10 分，碰到邊界或自己就結束。翻牌配對需找出全部 6 組，記錄本輪次數及秒數。方塊提供每顆一次的 Hold、接下來三顆 Next 及落點預覽。小徑需跳過缺口、避開或踩掉小怪並走到終點，星星不必集滿。賽車需閃過來車抵達 1000 公尺；撞球從三角形球陣開球，需把六顆色球打進袋，白球落袋記犯規並回位。六款目前皆無音訊與持久存檔。
+六款遊戲仍位於 games/，用 iframe 切換並在返回時卸載；遊戲分數不存檔，沒有音訊。既有獨立遊戲 HTML 保留操作方式，網站入口的角色登入在 index.html 實施。美術直接套用 Kenney Tiny Town／Tiny Dungeon CC0 原始 PNG，加上地圖組裝與人物外觀修改，來源與原授權見 [素材清單](assets/images/island/CREDITS.md)。
 
 ## 本機預覽
 
@@ -42,16 +50,16 @@ npm run build
 
 瀏覽器測試會自動啟停本輪預覽，須先停止佔用 5193 的本專案服務；不自行結束其他程式。預設使用已安裝 Google Chrome 的獨立 Playwright session，不沿用你的日常分頁或登入資料。@playwright/test 版本由 package-lock.json 鎖定；CI 安裝單一 Chromium headless shell。
 
-check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.4.0/。
+check 檢查 mjs 語法、清單及入口。核心測試含遊戲規則；瀏覽器測試分成外框替身回歸及實際正式遊戲驗收。結果與截圖寫入被 Git 忽略的 test-results/，本版已驗證證據另存 docs/evidence/v0.5.0/。
 
 build 只複製網站到 dist/，包含 site-version.json 供發布版本核對，不包含開發文件、測試、依賴或 Git 資料。
 
 ## 目錄與擴充
 
 ```text
-index.html                  # 網站大廳與外框
+index.html                  # 遊戲島、帳號介面、遊戲清單與外框
 games.json                  # 正式遊戲清單
-assets/                     # 網站樣式、程式與縮圖
+assets/                     # 島嶼／角色／本機儲存、樣式與 CC0 素材
 games/                      # 所有遊戲 HTML 入口
   snake.html
   memory.html
@@ -78,19 +86,21 @@ docs/                       # 規劃、整合契約、歷史與證據
 
 ## 文件與畫面
 
-- [本版球陣修正與驗收](docs/RELEASE-v0.4.1.md)
+- [本版遊戲島需求與驗收](docs/ISLAND-v0.5.0.md)
+- [v0.4.1 球陣修正](docs/RELEASE-v0.4.1.md)
 - [v0.4.0 新增遊戲](docs/FEATURE-v0.4.0.md)
 - [v0.2.1 修正紀錄](docs/RELEASE-v0.2.1.md)
 - [兩款遊戲與 CI/CD 成果](docs/RELEASE-v0.2.0.md)
 - [目前進度](docs/STATUS.md)
 - [需求與任務](docs/PLAN.md)
 - [遊戲整合契約](docs/GAME_SPEC.md)
-- [正式大廳截圖](docs/evidence/v0.4.0/games-lobby-desktop.png)
+- [遊戲島全景](docs/evidence/v0.5.0/island-desktop.png)
+- [角色建立](docs/evidence/v0.5.0/island-register.png)
 - [賽車終點](docs/evidence/v0.4.0/road-racer-finish.png)
 - [迷你撞球](docs/evidence/v0.4.0/mini-pool.png)
 
-平板實機與 Safari 等其他引擎尚未驗收；尺寸／觸控模擬不等同實機。沒有資料庫或玩家永久資料。
+平板實機與 Safari 等其他引擎尚未驗收；尺寸／觸控模擬不等同實機。角色資料僅儲存在目前瀏覽器 localStorage；無雲端資料庫。
 
 ## 版本與復原
 
-以 Git 提交與 site-version.json 定位程式版本。需要復原時建立回復變更的新提交，再推送 main，讓同一流程重驗及重新部署；不強制改寫歷史。也可用 git worktree add --detach 在新目錄檢查舊版本。程式復原不自動代表玩家資料復原；目前無玩家持久資料，復原演練未執行。
+以 Git 提交與 site-version.json 定位程式版本。需要復原時建立回復變更的新提交，再推送 main，讓同一流程重驗及重新部署；不強制改寫歷史。也可用 git worktree add --detach 在新目錄檢查舊版本。程式復原不自動代表玩家資料復原；目前角色資料位於瀏覽器 localStorage，程式復原不會自動備份或還原角色；復原演練未執行。

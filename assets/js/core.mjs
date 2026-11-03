@@ -19,7 +19,7 @@ export function validateCatalog(data, baseHref) {
   });
 }
 export function parseRoute(hash) {
-  if (!hash || hash === '#' || hash === '#collection' || hash === '#main') return null;
+  if (!hash || hash === '#' || hash === '#collection' || hash === '#island' || hash === '#main') return null;
   const params = new URLSearchParams(hash.slice(1));
   const id = params.get('game');
   if ([...params].length !== 1 || !id || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) throw new Error('這個遊戲網址格式不正確。');

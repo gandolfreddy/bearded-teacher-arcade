@@ -1,3 +1,4 @@
+import {enableTestAccount,signInTestAccount} from './fixtures/account.mjs';
 import {chromium, expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir, writeFile, readFile} from 'node:fs/promises';
@@ -13,7 +14,7 @@ async function run(name, fn) {
 }
 const context = await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW'});
 await context.route('**/games.json',route=>route.fulfill({json:demoCatalog}));
-const page = await context.newPage();
+const page = await context.newPage();await enableTestAccount(page);
 page.on('pageerror',error=>errors.push(error.message));
 let navigation = 0;
 async function fresh(url) { const target = new URL(url); target.searchParams.set('_test',String(++navigation)); return page.goto(target.href); }
@@ -144,7 +145,7 @@ try {
     await run('版面與觸控模擬 '+viewport.width+'×'+viewport.height,async()=>{
       const ctx = await browser.newContext({viewport,hasTouch:true,locale:'zh-TW'});
       await ctx.route('**/games.json',route=>route.fulfill({json:demoCatalog}));
-      const p = await ctx.newPage();
+      const p = await ctx.newPage();await enableTestAccount(p);
       try {
         await p.goto(base); await expect(p.locator('.game-card')).toHaveCount(2); await noOverflow(p);
         if (viewport.width===768) await p.screenshot({path:new URL('lobby-tablet.png',evidence).pathname.replace(/^\/([A-Z]:)/,'$1'),fullPage:true});

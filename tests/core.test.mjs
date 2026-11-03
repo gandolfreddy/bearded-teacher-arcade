@@ -24,7 +24,7 @@ test('可選縮圖僅接受站內素材目錄，其餘回退為預設圖', () =>
   assert.equal(validateCatalog(data,base)[0].thumbnail,undefined);
 });
 test('網址、頁內錨點與格式錯誤處理', () => {
-  for (const hash of ['', '#', '#main', '#collection']) assert.equal(parseRoute(hash),null);
+  for (const hash of ['', '#', '#main', '#collection', '#island']) assert.equal(parseRoute(hash),null);
   assert.equal(parseRoute('#game=direction-lab'),'direction-lab');
   for (const hash of ['#game=../x','#game=a&game=b','#other=a','#game=']) assert.throws(()=>parseRoute(hash));
 });

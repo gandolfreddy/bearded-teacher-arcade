@@ -1,3 +1,4 @@
+import {enableTestAccount,signInTestAccount} from './fixtures/account.mjs';
 import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -10,7 +11,7 @@ const browser=await chromium.launch({...(process.env.BTA_BROWSER==='chromium'?{}
 const results=[],errors=[];
 async function run(name,fn,options={}) {
   const context=await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW',...options});
-  const page=await context.newPage();page.on('pageerror',error=>errors.push({name,message:error.message}));
+  const page=await context.newPage();await enableTestAccount(page);page.on('pageerror',error=>errors.push({name,message:error.message}));
   try{
     await page.clock.install({time:new Date('2026-11-03T00:00:00Z')});
     await page.clock.pauseAt(new Date('2026-11-03T00:00:00Z'));
@@ -140,7 +141,7 @@ try{
     for(const id of ['tetris','star-trail']){
       await page.goto(base+'games/'+id+'.html');await page.getByRole('button',{name:'開始遊戲'}).click();
       await expect(page.locator('#status')).toHaveText('遊戲中');await expect(page.locator('.standalone')).toBeVisible();
-      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(6);
+      await page.locator('.standalone').click();await signInTestAccount(page);await page.goto(base);await expect(page.locator('.game-card')).toHaveCount(6);
     }
   });
   results.push({name:'新增遊戲無未處理 JavaScript 例外',status:errors.length?'failed':'passed'});

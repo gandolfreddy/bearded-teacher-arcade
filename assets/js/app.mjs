@@ -1,3 +1,4 @@
+import {initIsland} from './island.mjs';
 import {validateCatalog, parseRoute, matchesSearch, GameSession} from './core.mjs';
 const $ = id => document.getElementById(id);
 let games = [], selected = null, lastCard = null, catalogRequest = 0;
@@ -20,6 +21,7 @@ const session = new GameSession({
     if (state === 'error') $('play-message').textContent = message;
   }
 });
+const island=initIsland({onLogin:()=>{if(!$('catalog-error').hidden){$('lobby').hidden=false;$('player').hidden=true;$('island').hidden=true;document.body.dataset.screen='collection';island.setVisible(false);}else route();},onLogout:()=>{session.dispose();selected=null;location.hash='';},onLaunch:id=>{island.stop();location.hash='game='+id;}});
 function el(tag, className, text) {
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -55,17 +57,21 @@ function renderCards() {
 function route() {
   session.dispose(); selected = null;
   $('play-retry').hidden = false;
+  if(!island.authenticated){$('lobby').hidden=true;$('player').hidden=true;$('island').hidden=false;document.body.dataset.screen='gate';island.setVisible(true);return;}
+  $('main').inert=false;
   let id;
   try { id = parseRoute(location.hash); } catch (error) { showRouteError(error.message); return; }
   if (!id) {
-    $('lobby').hidden = false; $('player').hidden = true;
-    document.title = '大鬍子老師遊戲廣場';
+    const collection=location.hash==='#collection'||(!location.hash&&new URLSearchParams(location.search).get('view')==='collection');
+    $('lobby').hidden=!collection;$('player').hidden=true;$('island').hidden=collection;island.setVisible(!collection);document.body.dataset.screen=collection?'collection':'island';if(!collection)$('island-canvas').focus({preventScroll:true});
+    document.title = collection?'大鬍子老師遊戲廣場':'大鬍子遊戲島｜大鬍子老師遊戲廣場';
     if (lastCard) { $(lastCard)?.focus(); lastCard = null; }
     return;
   }
   const game = games.find(game => game.id === id);
   if (!game) { showRouteError('找不到這款遊戲。你可以返回大廳，選擇目前提供的遊戲。'); return; }
   selected = game;
+  island.setVisible(false);$('island').hidden=true;document.body.dataset.screen='game';
   $('lobby').hidden = true; $('player').hidden = false;
   $('player-title').textContent = game.title;
   document.querySelector('.demo-caption').hidden = game.kind !== 'demo';
@@ -78,6 +84,7 @@ function route() {
   session.open(game);
 }
 function showRouteError(message) {
+  island.setVisible(false);$('island').hidden=true;document.body.dataset.screen='game';
   $('lobby').hidden = true; $('player').hidden = false;
   $('player-title').textContent = '找不到這一站';
   $('player-title').focus({preventScroll:true});
@@ -100,7 +107,7 @@ async function loadCatalog() {
     if (!response.ok) throw new Error('無法讀取遊戲清單，請稍後重試。');
     const next = validateCatalog(await response.json(), location.href);
     if (request !== catalogRequest) return;
-    games = next; renderCards(); route();
+    games = next; island.refreshGames(games);renderCards(); route();
   } catch (error) {
     if (request !== catalogRequest) return;
     games = []; $('lobby').hidden = false; $('player').hidden = true;
@@ -114,6 +121,7 @@ window.addEventListener('hashchange', () => { if ($('catalog-error').hidden) rou
 window.addEventListener('pagehide', () => session.dispose());
 window.addEventListener('pageshow', event => { if (event.persisted) loadCatalog(); });
 document.addEventListener('visibilitychange', () => {if (document.hidden) session.send('pause');});
+$('back-lobby').addEventListener('click',event=>{if(new URLSearchParams(location.search).get('view')==='collection'){event.preventDefault();location.hash='collection';}});
 $('search').addEventListener('input', renderCards);
 $('clear-search').addEventListener('click', () => { $('search').value = ''; renderCards(); $('search').focus(); });
 $('catalog-retry').addEventListener('click', loadCatalog);

@@ -1,3 +1,4 @@
+import {enableTestAccount,signInTestAccount} from './fixtures/account.mjs';
 import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -9,7 +10,7 @@ const browser=await chromium.launch({...(process.env.BTA_BROWSER==='chromium'?{}
 const results=[],errors=[];
 async function run(name,fn,options={}) {
   const context=await browser.newContext({viewport:{width:1280,height:900},locale:'zh-TW',...options});
-  const page=await context.newPage();page.on('pageerror',error=>errors.push({name,message:error.message}));
+  const page=await context.newPage();await enableTestAccount(page);page.on('pageerror',error=>errors.push({name,message:error.message}));
   try{await fn(page);results.push({name,status:'passed'});console.log('PASS '+name);}
   catch(error){results.push({name,status:'failed',message:error.message});console.log('FAIL '+name+'\n'+error.stack);}
   finally{await context.close();}
@@ -116,7 +117,7 @@ try{
     for(const id of ['snake','memory']){
       await page.goto(base+'games/'+id+'.html');await expect(page.locator('.standalone')).toBeVisible();
       await page.getByRole('button',{name:'開始遊戲'}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
-      await page.locator('.standalone').click();await expect(page.locator('.game-card')).toHaveCount(6);
+      await page.locator('.standalone').click();await signInTestAccount(page);await expect(page.locator('#island')).toBeVisible();
       await page.goBack();await expect(page.getByRole('button',{name:/開始遊戲|繼續遊戲/})).toBeEnabled();
       await page.getByRole('button',{name:/開始遊戲|繼續遊戲/}).click();await expect(page.locator('#status')).toHaveText('遊戲中');
     }

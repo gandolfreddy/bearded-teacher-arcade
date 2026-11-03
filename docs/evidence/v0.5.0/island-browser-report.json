@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-03T09:00:22.955Z",
+  "results": [
+    {
+      "name": "login gate on every load and registration appearance persists",
+      "status": "passed"
+    },
+    {
+      "name": "click movement saves and restores location, sea cannot be crossed",
+      "status": "passed"
+    },
+    {
+      "name": "walk to game house, enter and return retains profile",
+      "status": "passed"
+    },
+    {
+      "name": "direct game route requires login then opens requested game",
+      "status": "passed"
+    },
+    {
+      "name": "duplicate unknown and invalid account errors preserve existing profile",
+      "status": "passed"
+    },
+    {
+      "name": "keyboard and minimap move same character",
+      "status": "passed"
+    },
+    {
+      "name": "quota failures remain on registration and retry can succeed",
+      "status": "passed"
+    },
+    {
+      "name": "corrupt data stays untouched and separate contexts do not share accounts",
+      "status": "passed"
+    },
+    {
+      "name": "movement write failure is visible and retry persists pending position",
+      "status": "passed"
+    },
+    {
+      "name": "cross-tab update stops stale writes and requires a new login",
+      "status": "passed"
+    },
+    {
+      "name": "touch island and registration fit 1280x720",
+      "status": "passed"
+    },
+    {
+      "name": "touch island and registration fit 1024x768",
+      "status": "passed"
+    },
+    {
+      "name": "touch island and registration fit 768x1024",
+      "status": "passed"
+    },
+    {
+      "name": "touch island and registration fit 390x844",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}
